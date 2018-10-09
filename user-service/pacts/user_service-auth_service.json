@@ -1,0 +1,83 @@
+{
+  "consumer": {
+    "name": "User Service"
+  },
+  "provider": {
+    "name": "Auth Service"
+  },
+  "interactions": [
+    {
+      "description": "a request to authenticate a valid user",
+      "providerState": "There are valid users",
+      "request": {
+        "method": "POST",
+        "path": "/authenticateUser",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "username": "hsimpson",
+          "password": "d0h!"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "username": "hsimpson",
+          "auth": true
+        }
+      }
+    },
+    {
+      "description": "a request to authenticate an valid user with an invalid password",
+      "providerState": "There are valid users",
+      "request": {
+        "method": "POST",
+        "path": "/authenticateUser",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "username": "hsimpson",
+          "password": "incorrect password"
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": {
+        },
+        "body": {
+          "username": "hsimpson",
+          "auth": false
+        }
+      }
+    },
+    {
+      "description": "a request to create a valid user",
+      "providerState": "There are valid users",
+      "request": {
+        "method": "PUT",
+        "path": "/createAuth",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "username": "newUser",
+          "password": "newUserPassword"
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+[
+    {
+        "username": "hsimpson",
+        "firstname": "Homer",
+        "lastname": "Simpson",
+        "profile": "Homer Jay Simpson is a fictional character and the main protagonist of the American animated sitcom The Simpsons as the patriarch of the eponymous family."
+    },
+    {
+        "username": "ssmithers",
+        "firstname": "Waylon",
+        "lastname": "Smithers",
+        "profile": "Waylon J. Smithers Jr., usually referred to as Mr. Smithers or simply Smithers, is a recurring fictional character in the animated sitcom The Simpsons, who is voiced by Harry Shearer."
+    },
+    {
+        "username": "anahesapeemaptilon",
+        "firstname": "Apu",
+        "lastname": "Nahasapeemapetilon",
+        "profile": "Apu Nahasapeemapetilon is a recurring character in the animated TV series The Simpsons. He is an Indian immigrant proprietor who runs the Springfield Kwik-E-Mart, a popular convenience store in Springfield, and is best known for his catchphrase, \"Thank you, come again.\""
+    }
+]

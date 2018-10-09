@@ -1,0 +1,15 @@
+{
+  "name": "pact-services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-user-service": "node ./user-service/index.js",
+    "start-auth-service": "node ./auth-service/index.js",
+    "start-services": "start npm run start-auth-service && start npm run start-user-service",
+    "pact-broker": "docker run -d -p 8080:80 risingstack/pact_broker_example"
+  },
+  "author": "",
+  "license": "ISC"
+}
