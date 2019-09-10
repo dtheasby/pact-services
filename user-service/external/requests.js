@@ -19,7 +19,7 @@ const authService = {
         const response = await request(opts);
         console.log(response.statusCode);
         console.log(`Received Authentication Response from Auth Service: ${JSON.stringify(response)}`)
-        if(response.statusCode === 200) {
+        if(response.statusCode === 200 || response.statusCode === 401) {
             return response.body
         } else {
             throw Error('Error authenticating user')

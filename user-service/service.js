@@ -25,8 +25,14 @@ async function getUsers() {
 async function loginUser({ username, password }) {
     let response = { username: username, auth: false, session: null }
     let userData = await userdb.findUser(username);
+    console.log(`USERDATE: ${JSON.stringify(userData)}`);
     let authResponse = await authService.authenticateUser({ username, password });
-    
+    console.log(`AUTHRESPONSE: ${JSON.stringify(authResponse)}`);
+    if(authResponse.auth) {
+        return {...authResponse, ...userData, session: createSession()}
+    } else {
+        return authResponse
+    }
 }
 
 function createSession() {

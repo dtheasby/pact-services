@@ -106,14 +106,14 @@ describe("Pact", () => {
 
         it("Responds with the expected message when requesting user authentication for a valid user", async () => {
             await provider.addInteraction(interactions.validAuthInteraction);
-            let authResponse = await authService.authenticateUser(MOCK_BODY.validUser.username, MOCK_BODY.validUser.password);
+            let authResponse = await authService.authenticateUser({username: MOCK_BODY.validUser.username, password: MOCK_BODY.validUser.password});
             expect(authResponse.username).toEqual(MOCK_BODY.validUser.username);
             expect(authResponse.auth).toEqual(true)
         });
 
         it("Responds with the expected message when requesting user authentication for an invalid user", async () => {
             await provider.addInteraction(interactions.invalidAuthInteraction);
-            let authResponse = await authService.authenticateUser(MOCK_BODY.invalidUser.username, MOCK_BODY.invalidUser.password);
+            let authResponse = await authService.authenticateUser({ username: MOCK_BODY.invalidUser.username, password:MOCK_BODY.invalidUser.password});
             console.log(authResponse)
             expect(authResponse.username).toEqual(MOCK_BODY.invalidUser.username);
             expect(authResponse.auth).toEqual(false)
@@ -122,7 +122,7 @@ describe("Pact", () => {
         it('is possible to test the user login function', async () => {
             await provider.addInteraction(interactions.validAuthInteraction);
             await db.initiliseDb();
-            const loginResponse = await loginUser(MOCK_BODY.validUser.username, MOCK_BODY.validUser.password);
+            const loginResponse = await loginUser({username: MOCK_BODY.validUser.username, password: MOCK_BODY.validUser.password});
             expect(loginResponse.username).toEqual(MOCK_BODY.validUser.username);
             expect(loginResponse.auth).toEqual(true);
             expect(loginResponse.session).toMatch(/[0-9]{8}/);
