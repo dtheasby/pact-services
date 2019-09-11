@@ -1,0 +1,40 @@
+[
+    {
+        "endpoint": "/authenticateUser",
+        "type": "POST",
+        "request": {
+            "headers": "application/json",
+            "body": {
+                "username": "string",
+                "password": "string"
+            }
+        },
+        "response": {
+            "status": [
+                200,
+                401
+            ],
+            "body": {
+                "username": "string",
+                "auth": "boolean"
+            }
+        }
+    },
+    {
+        "endpoint": "/createUser",
+        "type": "PUT",
+        "request": {
+            "headers": "application/json",
+            "body": {
+                "username": "string",
+                "password": "string"
+            }
+        },
+        "response": {
+            "status": [
+                201
+            ],
+            "body": {}
+        }
+    }
+]

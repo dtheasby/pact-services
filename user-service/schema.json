@@ -1,0 +1,71 @@
+[
+    {
+        "endpoint": "/getUsers",
+        "type": "GET",
+        "request": {
+            "headers": "",
+            "body": {}
+        },
+        "response": {
+            "status": [
+                200
+            ],
+            "body": [
+                {
+                    "username": "string",
+                    "firstname": "string",
+                    "lastname": "string",
+                    "profile": "string"
+                }
+            ]
+        }
+    },
+    {
+        "endpoint": "/loginUser",
+        "type": "POST",
+        "request": {
+            "headers": "application/json",
+            "body": {
+                "username": "string",
+                "password": "string"
+            }
+        },
+        "response": {
+            "status": [
+                200,
+                401
+            ],
+            "body": {
+                "username": "string",
+                "auth": "boolean",
+                "session": "",
+                "user": {
+                    "username": "string",
+                    "firstname": "string",
+                    "lastname": "string",
+                    "profile": "string"
+                }
+            }
+        }
+    },
+    {
+        "endpoint": "/createUser",
+        "type": "PUT",
+        "request": {
+            "headers": "application/json",
+            "body": {
+                "username": "string",
+                "firstname": "string",
+                "lastname": "string",
+                "profile": "string",
+                "password": "string"
+            }
+        },
+        "response": {
+            "status": [
+                201
+            ],
+            "body": {}
+        }
+    }
+]
