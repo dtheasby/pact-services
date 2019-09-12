@@ -24,10 +24,6 @@ describe("Pact", () => {
             "username": "hsimpson",
             "password": "d0h!"
         },
-        invalidUser: {
-            "username": "hsimpson",
-            "password": "incorrect password"
-        },
         validCreateUser: {
             "username":"newUser",
             "password":"newUserPassword"
@@ -39,10 +35,10 @@ describe("Pact", () => {
             "username": "hsimpson",
             "auth": true
         },
-        invalidUser: {
-            "username": "hsimpson",
-            "auth": false
-        },
+        // invalidUser: {
+        //     "username": "hsimpson",
+        //     "auth": false
+        // },
         validCreateUser: {
             "username":"newUser",
             "password":"newUserPassword"
@@ -64,22 +60,6 @@ describe("Pact", () => {
             willRespondWith: {
                 status: 200,
                 body: EXPECTED_BODY.validUser
-            }
-        },
-        invalidAuthInteraction: {
-            state: "There are valid users",
-            uponReceiving: "a request to authenticate an valid user with an invalid password",
-            withRequest: {
-                method: "POST",
-                path: `/${authApi.auth_endpoints.authenticateUser}`,
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: MOCK_BODY.invalidUser
-            },
-            willRespondWith: {
-                status: 401,
-                body: EXPECTED_BODY.invalidUser
             }
         },
         createUserInteraction: {
@@ -112,11 +92,12 @@ describe("Pact", () => {
         });
 
         it("Responds with the expected message when requesting user authentication for an invalid user", async () => {
-            await provider.addInteraction(interactions.invalidAuthInteraction);
-            let authResponse = await authService.authenticateUser({ username: MOCK_BODY.invalidUser.username, password:MOCK_BODY.invalidUser.password});
-            console.log(authResponse)
-            expect(authResponse.username).toEqual(MOCK_BODY.invalidUser.username);
-            expect(authResponse.auth).toEqual(false)
+            /* 
+            * Need to: 
+            * 1. create an invalid auth interaction for the pact service
+            * 2. Call the authService in such a way that it returns with the response we're expecting
+            * 3. Assert on the response properties
+            */
         });
 
         it('is possible to test the user login function', async () => {
@@ -126,6 +107,16 @@ describe("Pact", () => {
             expect(loginResponse.username).toEqual(MOCK_BODY.validUser.username);
             expect(loginResponse.auth).toEqual(true);
             expect(loginResponse.session).toMatch(/[0-9]{8}/);
+        })
+
+        it('is possible to test the user login function for an incorrect login', async () => {
+            /* 
+            * Need to: 
+            * 1. create an invalid auth interaction for the pact service
+            * 2. Initialise the state of the user service we need.
+            * 3. Call the function we're trying to test
+            * 4. Assert on the response properties
+            */
         })
 
         it('is possible to test the create user function', async () => {
@@ -141,6 +132,10 @@ describe("Pact", () => {
             await createUser(newUser)
             const dbUser = await db.findUser(newUser.username);
             expect(dbUser[0].profile).toEqual(newUser.profile)
+        })
+
+        it('is possible to test the create user function for a fail in the create auth response', async () => {
+            // LEFT BLANK - NO HINTS :) 
         })
 
         afterEach(async () => {
